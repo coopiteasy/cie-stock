@@ -7,19 +7,17 @@
 
 <!-- /!\ do not modify above this line -->
 
-# cie-stock
+# Coop IT Easy stock modules
 
-TODO: add repo description.
+TODO: Add repo description
 
 <!-- /!\ do not modify below this line -->
 
 <!-- prettier-ignore-start -->
+
 [//]: # (addons)
 
-Available addons
-----------------
-addon | version | summary
---- | --- | ---
+This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
 
 [//]: # (end addons)
 
