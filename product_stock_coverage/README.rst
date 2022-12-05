@@ -13,26 +13,48 @@ Product - Stock Coverage
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
-.. |badge3| image:: https://img.shields.io/badge/github-beescoop%2FObeesdoo-lightgray.png?logo=github
-    :target: https://github.com/beescoop/Obeesdoo/tree/12.0/beesdoo_stock_coverage
-    :alt: beescoop/Obeesdoo
+.. |badge3| image:: https://img.shields.io/badge/github-coopiteasy%2Fcie--stock-lightgray.png?logo=github
+    :target: https://github.com/coopiteasy/cie-stock/tree/12.0/product_stock_coverage
+    :alt: coopiteasy/cie-stock
 
 |badge1| |badge2| |badge3| 
 
-Compute estimated stock coverage based on product sales over a date range.
+Compute estimated stock coverage based on POS sales over a date range.
+
+This module adds these fields on product template :
+
+- Computation range in days
+- Sales over computation range
+- Average daily sales over computation range
+- Stock coverage in days
+- Effective sale price over computation range
+
+The default date range is 14 days, it can be changed on each article.
 
 **Table of contents**
 
 .. contents::
    :local:
 
+Known issues / Roadmap
+======================
+
+
+To be included in the OCA, this module needs refactoring :
+
+- extract daily sales from ddmrp module
+- feed stock coverage into stock.demand.estimate
+- display values on products
+
+More details in this PR : OCA/stock-logistics-warehouse#1563
+
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/beescoop/Obeesdoo/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/coopiteasy/cie-stock/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/beescoop/Obeesdoo/issues/new?body=module:%20beesdoo_stock_coverage%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/coopiteasy/cie-stock/issues/new?body=module:%20product_stock_coverage%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -52,6 +74,6 @@ Contributors
 Maintainers
 ~~~~~~~~~~~
 
-This module is part of the `beescoop/Obeesdoo <https://github.com/beescoop/Obeesdoo/tree/12.0/beesdoo_stock_coverage>`_ project on GitHub.
+This module is part of the `coopiteasy/cie-stock <https://github.com/coopiteasy/cie-stock/tree/12.0/product_stock_coverage>`_ project on GitHub.
 
 You are welcome to contribute.
