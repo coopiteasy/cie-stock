@@ -21,7 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[product_stock_coverage](product_stock_coverage/) | 12.0.0.0.1 |  | Compute estimated stock coverage based on POS sales over a date range.
+[product_stock_coverage](product_stock_coverage/) | 12.0.0.0.2 |  | Compute estimated stock coverage based on POS sales over a date range.
 
 [//]: # (end addons)
 
