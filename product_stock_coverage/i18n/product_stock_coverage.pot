@@ -38,6 +38,13 @@ msgid "Effective Sale Price"
 msgstr ""
 
 #. module: product_stock_coverage
+#: model:ir.actions.server,name:product_stock_coverage.product_sale_statistics_cron_ir_actions_server
+#: model:ir.cron,cron_name:product_stock_coverage.product_sale_statistics_cron
+#: model:ir.cron,name:product_stock_coverage.product_sale_statistics_cron
+msgid "Product Stock Coverage - Update Article Sales Statistics"
+msgstr ""
+
+#. module: product_stock_coverage
 #: model:ir.model,name:product_stock_coverage.model_product_template
 msgid "Product Template"
 msgstr ""
@@ -63,12 +70,5 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_stock_coverage.field_product_product__stock_coverage
 #: model:ir.model.fields,field_description:product_stock_coverage.field_product_template__stock_coverage
 msgid "Stock Coverage (days)"
-msgstr ""
-
-#. module: product_stock_coverage
-#: model:ir.actions.server,name:product_stock_coverage.product_sale_statistics_cron_ir_actions_server
-#: model:ir.cron,cron_name:product_stock_coverage.product_sale_statistics_cron
-#: model:ir.cron,name:product_stock_coverage.product_sale_statistics_cron
-msgid "Stock Coverage - Update Article Sales Statistics"
 msgstr ""
 
