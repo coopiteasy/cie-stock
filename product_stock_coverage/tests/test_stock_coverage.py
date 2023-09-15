@@ -11,22 +11,23 @@ from odoo.tools import float_compare
 
 
 class TestModule(TransactionCase):
-    def setUp(self):
-        super(TestModule, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
         # Get Registry
-        self.PosOrder = self.env["pos.order"]
-        self.AccountPayment = self.env["account.payment"]
+        cls.PosOrder = cls.env["pos.order"]
+        cls.AccountPayment = cls.env["account.payment"]
 
         # Get Object
-        self.pos_product = self.env.ref("product.product_product_25")
-        self.pos_template = self.pos_product.product_tmpl_id
-        self.pricelist = self.env.ref("product.list0")
-        self.partner = self.env.ref("base.res_partner_12")
+        cls.pos_product = cls.env.ref("product.product_product_25")
+        cls.pos_template = cls.pos_product.product_tmpl_id
+        cls.pricelist = cls.env.ref("product.list0")
+        cls.partner = cls.env.ref("base.res_partner_12")
 
         # Create a new pos config and open it
-        self.pos_config = self.env.ref("point_of_sale.pos_config_main").copy()
-        self.pos_config.open_session_cb()
+        cls.pos_config = cls.env.ref("point_of_sale.pos_config_main").copy()
+        cls.pos_config.open_session_cb()
 
     # Test Section
     def test_compute_stock_coverage(self):
