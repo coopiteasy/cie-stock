@@ -9,7 +9,6 @@ from odoo.exceptions import ValidationError
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    @api.multi
     @api.constrains("computation_range")
     def _check_computation_range(self):
         for template in self:
@@ -22,22 +21,18 @@ class ProductTemplate(models.Model):
         compute="_compute_stock_coverage",
         store=True,
     )
-    daily_sales = fields.Float(
-        string="Daily Sales", compute="_compute_stock_coverage", store=True
-    )
+    daily_sales = fields.Float(compute="_compute_stock_coverage", store=True)
     stock_coverage = fields.Float(
         string="Stock Coverage (days)",
         compute="_compute_stock_coverage",
         store=True,
     )
     effective_sale_price = fields.Float(
-        string="Effective Sale Price",
         compute="_compute_stock_coverage",
         store=True,
         help="SUM (unit_price * qty) / SUM (qty) over pos order lines",
     )
 
-    @api.multi
     @api.depends("computation_range", "virtual_available", "active")
     def _compute_stock_coverage(self):
         """
