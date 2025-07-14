@@ -17,7 +17,11 @@ TODO: Add repo description
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[product_stock_coverage](product_stock_coverage/) | 16.0.1.0.0 |  | Compute estimated stock coverage based on POS sales over a date range.
 
 [//]: # (end addons)
 
