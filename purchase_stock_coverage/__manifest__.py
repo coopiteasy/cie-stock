@@ -4,7 +4,7 @@
     "author": "BEES coop - Cellule IT, Coop IT Easy SC",
     "website": "https://coopiteasy.be",
     "category": "Purchase",
-    "version": "12.0.1.0.0",
+    "version": "16.0.1.0.0",
     "depends": [
         "purchase",
         "product_stock_coverage",
