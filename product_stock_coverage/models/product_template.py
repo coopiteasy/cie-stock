@@ -18,23 +18,19 @@ class ProductTemplate(models.Model):
     computation_range = fields.Integer("Computation range (days)", default=14)
     range_sales = fields.Float(
         string="Sales over Range",
-        compute="_compute_stock_coverage",
         store=True,
     )
-    daily_sales = fields.Float(compute="_compute_stock_coverage", store=True)
+    daily_sales = fields.Float(store=True)
     stock_coverage = fields.Float(
         string="Stock Coverage (days)",
-        compute="_compute_stock_coverage",
         store=True,
     )
     effective_sale_price = fields.Float(
-        compute="_compute_stock_coverage",
         store=True,
         help="SUM (unit_price * qty) / SUM (qty) over pos order lines",
     )
 
-    @api.depends("computation_range", "virtual_available", "active")
-    def _compute_stock_coverage(self):
+    def _cron_stock_coverage(self):
         """
         effective_sale_price is balanced:
         - [SUM (unit_price_i * qty_i)] / SUM (qty_i) for i in 0..n
@@ -99,8 +95,3 @@ class ProductTemplate(models.Model):
                 template.stock_coverage = 9999
             else:
                 template.stock_coverage = template.virtual_available / avg
-
-    @api.model
-    def cron_compute_stock_coverage(self):
-        templates = self.env["product.template"].search([])
-        templates._compute_stock_coverage()
