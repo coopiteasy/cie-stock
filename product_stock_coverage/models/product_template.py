@@ -93,7 +93,7 @@ class ProductTemplate(models.Model):
             else:
                 template.effective_sale_price = esp
 
-            if template.virtual_available == 0:
+            if template.virtual_available <= 0:
                 template.stock_coverage = 0
             elif avg == 0:
                 template.stock_coverage = 9999
