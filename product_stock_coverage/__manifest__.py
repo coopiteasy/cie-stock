@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Product - Stock Coverage",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.1.0",
     "category": "Stock",
     "summary": "Compute estimated stock coverage based on POS sales over "
     "a date range.",

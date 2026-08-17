@@ -21,7 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[product_stock_coverage](product_stock_coverage/) | 16.0.1.0.0 |  | Compute estimated stock coverage based on POS sales over a date range.
+[product_stock_coverage](product_stock_coverage/) | 16.0.1.1.0 |  | Compute estimated stock coverage based on POS sales over a date range.
 [purchase_stock_coverage](purchase_stock_coverage/) | 16.0.1.0.0 |  | Display product's stock coverage on purchase order line
 
 [//]: # (end addons)
