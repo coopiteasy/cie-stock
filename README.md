@@ -22,6 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [product_stock_coverage](product_stock_coverage/) | 16.0.1.1.0 |  | Compute estimated stock coverage based on POS sales over a date range.
+[purchase_quick_stock_coverage](purchase_quick_stock_coverage/) | 16.0.1.0.0 | <a href='https://github.com/mihien'><img src='https://github.com/mihien.png' width='32' height='32' style='border-radius:50%;' alt='mihien'/></a> | Add stock coverage to the purchase quick view
 [purchase_stock_coverage](purchase_stock_coverage/) | 16.0.1.0.0 |  | Display product's stock coverage on purchase order line
 
 [//]: # (end addons)
