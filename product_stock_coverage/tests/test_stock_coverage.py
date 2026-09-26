@@ -36,11 +36,11 @@ class TestModule(TransactionCase):
 
         # Needed for deterministic tests. now() in SQL may work slightly
         # differently.
-        cls.one_second_ago = fields.Datetime.now() - timedelta(seconds=1)
+        cls.one_day_ago = fields.Datetime.now() - timedelta(days=1)
 
     def test_compute_stock_coverage_simple(self):
-        self._create_order(1, 1, self.one_second_ago)
-        self.pos_template._compute_stock_coverage()
+        self._create_order(1, 1, self.one_day_ago)
+        self.pos_template._cron_stock_coverage()
         self.assertEqual(self.pos_template.range_sales, 1)
         self.assertAlmostEqual(
             self.pos_template.daily_sales, 1 / self.pos_template.computation_range
@@ -54,8 +54,8 @@ class TestModule(TransactionCase):
     def test_compute_stock_coverage_more_complex(self):
         qty = 100
         price = 10
-        self._create_order(qty, price, self.one_second_ago)
-        self.pos_template._compute_stock_coverage()
+        self._create_order(qty, price, self.one_day_ago)
+        self.pos_template._cron_stock_coverage()
         self.assertEqual(self.pos_template.range_sales, qty)
         self.assertAlmostEqual(
             self.pos_template.daily_sales, qty / self.pos_template.computation_range
@@ -67,9 +67,9 @@ class TestModule(TransactionCase):
         self.assertAlmostEqual(self.pos_template.effective_sale_price, price)
 
     def test_compute_stock_average_effective_price(self):
-        self._create_order(1, 2, self.one_second_ago)
-        self._create_order(1, 4, self.one_second_ago)
-        self.pos_template._compute_stock_coverage()
+        self._create_order(1, 2, self.one_day_ago)
+        self._create_order(1, 4, self.one_day_ago)
+        self.pos_template._cron_stock_coverage()
         self.assertEqual(self.pos_template.range_sales, 2)
         self.assertAlmostEqual(
             self.pos_template.daily_sales, 2 / self.pos_template.computation_range
@@ -81,8 +81,8 @@ class TestModule(TransactionCase):
         self.assertAlmostEqual(self.pos_template.effective_sale_price, 3)
 
     def test_compute_stock_coverage_simple_tax_price_include(self):
-        self._create_order(1, 1, self.one_second_ago, tax=1, price_include=True)
-        self.pos_template._compute_stock_coverage()
+        self._create_order(1, 1, self.one_day_ago, tax=1, price_include=True)
+        self.pos_template._cron_stock_coverage()
         self.assertEqual(self.pos_template.range_sales, 1)
         self.assertAlmostEqual(
             self.pos_template.daily_sales, 1 / self.pos_template.computation_range
@@ -94,8 +94,8 @@ class TestModule(TransactionCase):
         self.assertAlmostEqual(self.pos_template.effective_sale_price, 2)
 
     def test_compute_stock_coverage_simple_tax_price_exclude(self):
-        self._create_order(1, 1, self.one_second_ago, tax=1, price_include=False)
-        self.pos_template._compute_stock_coverage()
+        self._create_order(1, 1, self.one_day_ago, tax=1, price_include=False)
+        self.pos_template._cron_stock_coverage()
         self.assertEqual(self.pos_template.range_sales, 1)
         self.assertAlmostEqual(
             self.pos_template.daily_sales, 1 / self.pos_template.computation_range
@@ -108,17 +108,15 @@ class TestModule(TransactionCase):
 
     def test_compute_stock_coverage_too_long_ago(self):
         # Computation range is 14
-        self._create_order(1, 1, self.one_second_ago - timedelta(days=14))
-        self.pos_template._compute_stock_coverage()
+        self._create_order(1, 1, self.one_day_ago - timedelta(days=14))
+        self.pos_template._cron_stock_coverage()
         self.assertEqual(self.pos_template.range_sales, 0)
         self.assertAlmostEqual(self.pos_template.daily_sales, 0)
         self.assertAlmostEqual(self.pos_template.stock_coverage, 9999)
         self.assertAlmostEqual(self.pos_template.effective_sale_price, 0)
 
-        self._create_order(
-            1, 1, self.one_second_ago - timedelta(days=14) + timedelta(seconds=10)
-        )
-        self.pos_template._compute_stock_coverage()
+        self._create_order(1, 1, self.one_day_ago - timedelta(days=12))
+        self.pos_template._cron_stock_coverage()
         self.assertEqual(self.pos_template.range_sales, 1)
 
     # For some reason, the SQL in the compute function does not account for
@@ -127,8 +125,8 @@ class TestModule(TransactionCase):
     @unittest.skip
     def test_compute_stock_coverage_change_computation_range(self):
         self.pos_template.computation_range = 30
-        self._create_order(1, 1, self.one_second_ago - timedelta(days=29))
-        self.pos_template._compute_stock_coverage()
+        self._create_order(1, 1, self.one_day_ago - timedelta(days=29))
+        self.pos_template._cron_stock_coverage()
         self.assertEqual(self.pos_template.range_sales, 1)
         self.assertAlmostEqual(
             self.pos_template.daily_sales, 1 / self.pos_template.computation_range
